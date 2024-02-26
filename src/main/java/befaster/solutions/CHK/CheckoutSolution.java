@@ -40,7 +40,7 @@ public class CheckoutSolution {
         }
 
         // First, we try to apply as much offers as possible
-        int result = searchOptimalUseOfOffers(basket);
+        int result = searchOptimalUseOfOffers(basket, 0);
 
         // Then, we calculate the total bill with the remaining elements in the basket
 //        for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
@@ -71,14 +71,14 @@ public class CheckoutSolution {
         return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
     }
 
-    private int searchOptimalUseOfOffers(Map<Character, Integer> basket) {
-        int sum = 0;
+    private int searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
+        int sum = runningValue;
         Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
         for (Offer offer : filteredOffers) {
-            sum = 0;
+            sum = runningValue;
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
             sum += applyOffer(updatedBasket, offer);
-            sum += searchOptimalUseOfOffers(updatedBasket);
+            searchOptimalUseOfOffers(updatedBasket, sum);
         }
 
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
@@ -149,3 +149,4 @@ public class CheckoutSolution {
         return false;
     }
 }
+

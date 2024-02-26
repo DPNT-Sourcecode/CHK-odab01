@@ -51,10 +51,8 @@ public class CheckoutSolution {
     }
 
     /**
-     * Check if the input is valid. Otherwise, we stop running and return -1
-     *
      * @param basket
-     * @return
+     * @return whether the input is valid or not. If not, we stop running and return -1
      */
     private boolean invalidInput(Map<Character, Integer> basket) {
         return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
@@ -65,9 +63,8 @@ public class CheckoutSolution {
      *
      * @param basket
      * @param runningValue
-     * @return
      */
-    private int searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
+    private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
         int sum = runningValue;
         Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
         for (Offer offer : filteredOffers) {
@@ -83,8 +80,6 @@ public class CheckoutSolution {
         if (sum < bestResult) {
             bestResult = sum;
         }
-
-        return sum;
     }
 
     /**
@@ -92,7 +87,7 @@ public class CheckoutSolution {
      *
      * @param basket
      * @param offer
-     * @return
+     * @return the cost after the offer has been applied
      */
     private int applyOffer(Map<Character, Integer> basket, Offer offer) {
         if (basket.get(offer.item) - offer.units == 0) {
@@ -112,6 +107,11 @@ public class CheckoutSolution {
         return offer.price;
     }
 
+    /**
+     * @param basket
+     * @param offer
+     * @return a boolean indicating wheter the offer can be applied or not
+     */
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
         int numberOfItemsRequired = offer.units;
         if (offer.freeItem == offer.item) {
@@ -128,7 +128,3 @@ public class CheckoutSolution {
         return false;
     }
 }
-
-
-
-

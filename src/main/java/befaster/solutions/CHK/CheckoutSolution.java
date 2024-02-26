@@ -74,7 +74,7 @@ public class CheckoutSolution {
         }
 
         // Recursively, try all different options to apply offers
-//        searchOptimalUseOfOffers(basket, 0);
+        searchOptimalUseOfOffers(basket, 0);
 
         return bestResult;
     }
@@ -157,3 +157,4 @@ public class CheckoutSolution {
         return false;
     }
 }
+

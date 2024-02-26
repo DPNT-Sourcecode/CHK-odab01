@@ -31,8 +31,3 @@ public class Offer implements Comparable<Offer> {
         }
     }
 }
-
-
-
-
-

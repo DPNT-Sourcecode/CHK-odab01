@@ -10,32 +10,28 @@ public class CheckoutSolutionTest {
 
     private CheckoutSolution checkoutSolution;
 
-    @BeforeEach
-    public void setUp() {
-        checkoutSolution = new CheckoutSolution();
-    }
-
     @Test
     public void normalCases() {
-        assertThat(checkoutSolution.checkout("AB"), equalTo(80));
-        assertThat(checkoutSolution.checkout("B"), equalTo(30));
-        assertThat(checkoutSolution.checkout("ABCDDD"), equalTo(145));
+        assertThat(new CheckoutSolution().checkout("AB"), equalTo(80));
+        assertThat(new CheckoutSolution().checkout("B"), equalTo(30));
+        assertThat(new CheckoutSolution().checkout("ABCDDD"), equalTo(145));
     }
 
     @Test
     public void offerCases() {
-//        assertThat(checkoutSolution.checkout("ABCADA"), equalTo(195));
-//        assertThat(checkoutSolution.checkout("ABCADAA"), equalTo(245));
-//        assertThat(checkoutSolution.checkout("AABAACAA"), equalTo(300));
-//        assertThat(checkoutSolution.checkout("AABAACBAA"), equalTo(315));
-        assertThat(checkoutSolution.checkout("AAABB"), equalTo(175));
-//        assertThat(checkoutSolution.checkout("ABB"), equalTo(95));
+        assertThat(new CheckoutSolution().checkout("ABCADA"), equalTo(195));
+        assertThat(new CheckoutSolution().checkout("ABCADAA"), equalTo(245));
+        assertThat(new CheckoutSolution().checkout("AABAACAA"), equalTo(300));
+        assertThat(new CheckoutSolution().checkout("AABAACBAA"), equalTo(315));
+        assertThat(new CheckoutSolution().checkout("AAABB"), equalTo(175));
+        assertThat(new CheckoutSolution().checkout("ABB"), equalTo(95));
     }
 
     @Test
     public void edgeCases() {
-        assertThat(checkoutSolution.checkout(""), equalTo(0));
-        assertThat(checkoutSolution.checkout("Z"), equalTo(-1));
-        assertThat(checkoutSolution.checkout("ABCZDDD"), equalTo(-1));
+        assertThat(new CheckoutSolution().checkout(""), equalTo(0));
+        assertThat(new CheckoutSolution().checkout("Z"), equalTo(-1));
+        assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
     }
 }
+

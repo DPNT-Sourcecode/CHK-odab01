@@ -7,8 +7,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class CheckoutSolutionTest {
 
-    private CheckoutSolution checkoutSolution;
-
     @Test
     public void normalCases() {
         assertThat(new CheckoutSolution().checkout("A"), equalTo(50));
@@ -42,6 +40,7 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
     }
 }
+
 
 
 

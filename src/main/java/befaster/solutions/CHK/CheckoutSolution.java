@@ -44,6 +44,8 @@ public class CheckoutSolution {
         // Recursively, try all different options to apply offers
         searchOptimalUseOfOffers(basket, 0);
 
+        System.out.println("Bestresult: " + bestResult);
+
         return bestResult;
     }
 
@@ -121,6 +123,7 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 
 

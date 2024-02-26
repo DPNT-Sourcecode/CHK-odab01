@@ -15,12 +15,12 @@ public class CheckoutSolution {
             new StockKeepingUnit('D', 15)
     );
 
-    TreeSet<Offer> offers = TreeSet.of(
+    Set<Offer> offers = new TreeSet<>(Set.of(
             new Offer('A', 3, 130, new ArrayList<>()),
             new Offer('A', 5, 200, new ArrayList<>()),
             new Offer('B', 2, 45, new ArrayList<>()),
             new Offer('E', 2, 80, List.of('B'))
-    );
+    ));
 
     public Integer checkout(String skus) {
 
@@ -82,4 +82,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 

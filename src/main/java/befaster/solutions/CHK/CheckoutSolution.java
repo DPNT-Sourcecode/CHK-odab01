@@ -75,6 +75,7 @@ public class CheckoutSolution {
         int sum = 0;
         Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
         for (Offer offer : filteredOffers) {
+            sum = 0;
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
             sum += applyOffer(updatedBasket, offer);
             sum += searchOptimalUseOfOffers(updatedBasket);
@@ -148,6 +149,7 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 
 

@@ -2,7 +2,7 @@ package befaster.supermarket;
 
 import java.util.List;
 
-public class Offer {
+public class Offer implements Comparable<Offer> {
 
     public Character item;
     public int units;
@@ -17,10 +17,16 @@ public class Offer {
     }
 
     @Override
-    public int compareTo(Offer otherOffer){
-        
-    }
+    public int compareTo(Offer otherOffer) {
+        int itemComparison = this.item.compareTo(otherOffer.item);
+        if (itemComparison != 0) {
+            return itemComparison;
+        }
 
+        // If items are equal, order by number of items in the offer
+        return Integer.compare(otherOffer.units, this.units);
+    }
 }
+
 
 

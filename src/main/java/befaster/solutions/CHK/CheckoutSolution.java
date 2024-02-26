@@ -2,7 +2,10 @@ package befaster.solutions.CHK;
 
 import befaster.supermarket.Offer;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -36,28 +39,6 @@ public class CheckoutSolution {
             Map.entry('Z', 21)
     );
 
-//    // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
-//    Set<Offer> offers = new TreeSet<>(Set.of(
-//            new Offer('A', 3, 130, null, false),
-//            new Offer('A', 5, 200, null, false),
-//            new Offer('B', 2, 45, null, false),
-//            new Offer('E', 2, 80, 'B', true),
-//            new Offer('F', 2, 20, 'F', true),
-//            new Offer('H', 5, 45, null, false),
-//            new Offer('H', 10, 80, null, true),
-//            new Offer('K', 2, 150, null, true),
-//            new Offer('N', 3, 120, 'M', true),
-//            new Offer('P', 5, 200, null, true),
-//            new Offer('Q', 3, 80, null, false),
-//            new Offer('R', 3, 150, 'Q', true),
-//            new Offer('U', 3, 120, 'U', true),
-//            new Offer('V', 2, 90, null, false),
-//            new Offer('V', 3, 130, null, true)
-//    ));
-
-    Set<Character> setOfItems = new LinkedHashSet<>();
-
-
     // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
     Set<Offer> offers = new TreeSet<>(Set.of(
             new Offer('A', 3, 130, null, false, null),
@@ -77,10 +58,6 @@ public class CheckoutSolution {
             new Offer('V', 3, 130, null, true, null),
             new Offer('*', 3, 45, null, true, "ZYSTX")
     ));
-
-//    Set<GroupOffer> groupOffers = new TreeSet<>(Set.of(
-//            new GroupOffer(new LinkedHashSet<>(Set.of('Z', 'Y', 'S', 'T', 'X')), 3, 45)
-//    ));
 
     int bestResult;
 
@@ -146,7 +123,7 @@ public class CheckoutSolution {
      */
     private int applyOffer(Map<Character, Integer> basket, Offer offer) {
         int numTimesApplied = 0;
-        if (offer.items != null) {
+        if (!offer.items.isEmpty()) {
             int numOfAffectedItems = 0;
             for (Character element : offer.items) {
                 numOfAffectedItems += basket.getOrDefault(element, 0);
@@ -199,7 +176,7 @@ public class CheckoutSolution {
      * @return a boolean indicating wheter the offer can be applied or not
      */
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
-        if (offer.items != null) {
+        if (!offer.items.isEmpty()) {
             int numOfAffectedItems = 0;
             for (Character element : offer.items) {
                 numOfAffectedItems += basket.getOrDefault(element, 0);
@@ -223,3 +200,4 @@ public class CheckoutSolution {
         }
     }
 }
+

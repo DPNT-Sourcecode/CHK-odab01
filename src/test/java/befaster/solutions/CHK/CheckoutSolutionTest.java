@@ -29,8 +29,8 @@ public class CheckoutSolutionTest {
     @Test
     public void CHK_R2() {
         assertThat(new CheckoutSolution().checkout("EEB"), equalTo(80));
-//        assertThat(new CheckoutSolution().checkout("EE"), equalTo(80));
-//        assertThat(new CheckoutSolution().checkout("BBEE"), equalTo(110));
+        assertThat(new CheckoutSolution().checkout("EE"), equalTo(80));
+        assertThat(new CheckoutSolution().checkout("BBEE"), equalTo(110));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("VVVVV"), equalTo(220));
         assertThat(new CheckoutSolution().checkout("KKJK"), equalTo(250));
         assertThat(new CheckoutSolution().checkout("AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHVVVBBNNNMFFFKKQQQVVHHHHH"), equalTo(1610));
-        assertThat(new CheckoutSolution().checkout("PPPPQRUVPQRUVPQRUVSU"), equalTo(740));
+        assertThat(new CheckoutSolution().checkout("PPPPQRUVPQRUVPQRUVSU"), equalTo(730));
     }
 
     @Test
@@ -63,3 +63,4 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("ABCzDDD"), equalTo(-1));
     }
 }
+

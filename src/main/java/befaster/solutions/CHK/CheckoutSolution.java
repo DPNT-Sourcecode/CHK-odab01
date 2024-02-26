@@ -3,7 +3,10 @@ package befaster.solutions.CHK;
 import befaster.supermarket.Offer;
 import befaster.supermarket.StockKeepingUnit;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -12,16 +15,17 @@ public class CheckoutSolution {
             new StockKeepingUnit('A', 50),
             new StockKeepingUnit('B', 30),
             new StockKeepingUnit('C', 20),
-            new StockKeepingUnit('D', 15)
+            new StockKeepingUnit('D', 15),
+            new StockKeepingUnit('E', 40)
     );
 
     // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
-    Set<Offer> offers = new TreeSet<>(Set.of(
-            new Offer('A', 3, 130, null, 20),
-            new Offer('A', 5, 200, null, 50),
-            new Offer('B', 2, 45, null, 15),
-            new Offer('E', 2, 80, 'B', 30)
-    ));
+    List<Offer> offers = List.of(
+            new Offer('A', 3, 130, null),
+            new Offer('A', 5, 200, null),
+            new Offer('B', 2, 45, null),
+            new Offer('E', 2, 80, 'B')
+    );
 
     int bestResult = Integer.MAX_VALUE;
 
@@ -117,6 +121,7 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 
 

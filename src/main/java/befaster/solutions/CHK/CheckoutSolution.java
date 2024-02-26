@@ -95,6 +95,7 @@ public class CheckoutSolution {
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
+        List<Offer> filteredOffers = offers.stream().filter(it -> basket.containsKey(it.item)).collect(Collectors.toList());
 
         // Checking valid input. If not, exit the program -> -1
         if (invalidInput(basket)) {
@@ -119,7 +120,7 @@ public class CheckoutSolution {
      * Recursively, go through all different options until we find the best option for the customer to save money
      *
      * @param basket       - The current basket that the customer wants to buy
-     * @param runningValue - The current amout of the bill with the items that have been bought already
+     * @param runningValue - The current amount of the bill with the items that have been bought already
      */
     private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
         int sum = runningValue;
@@ -185,3 +186,4 @@ public class CheckoutSolution {
         return false;
     }
 }
+

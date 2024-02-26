@@ -42,9 +42,10 @@ public class CheckoutSolutionTest {
 
     @Test
     public void CHK_R4() {
-        assertThat(new CheckoutSolution().checkout("RRRQ"), equalTo(150));
-        assertThat(new CheckoutSolution().checkout("VVVVV"), equalTo(220));
-        assertThat(new CheckoutSolution().checkout("KKJK"), equalTo(290));
+//        assertThat(new CheckoutSolution().checkout("RRRQ"), equalTo(150));
+//        assertThat(new CheckoutSolution().checkout("VVVVV"), equalTo(220));
+//        assertThat(new CheckoutSolution().checkout("KKJK"), equalTo(290));
+        assertThat(new CheckoutSolution().checkout("LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH"), equalTo(1880));
     }
 
     @Test
@@ -54,4 +55,5 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("ABCzDDD"), equalTo(-1));
     }
 }
+
 

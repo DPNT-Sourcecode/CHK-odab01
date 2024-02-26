@@ -3,9 +3,7 @@ package befaster.solutions.CHK;
 import befaster.supermarket.Offer;
 import befaster.supermarket.StockKeepingUnit;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -17,9 +15,11 @@ public class CheckoutSolution {
             new StockKeepingUnit('D', 15)
     );
 
-    List<Offer> offers = List.of(
-            new Offer('A', 3, 130),
-            new Offer('B', 2, 45)
+    TreeSet<Offer> offers = TreeSet.of(
+            new Offer('A', 3, 130, new ArrayList<>()),
+            new Offer('A', 5, 200, new ArrayList<>()),
+            new Offer('B', 2, 45, new ArrayList<>()),
+            new Offer('E', 2, 80, List.of('B'))
     );
 
     public Integer checkout(String skus) {
@@ -82,3 +82,4 @@ public class CheckoutSolution {
         return sum;
     }
 }
+

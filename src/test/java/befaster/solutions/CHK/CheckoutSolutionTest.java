@@ -40,7 +40,3 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
     }
 }
-
-
-
-

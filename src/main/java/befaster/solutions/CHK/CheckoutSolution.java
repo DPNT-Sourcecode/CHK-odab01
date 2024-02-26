@@ -67,9 +67,11 @@ public class CheckoutSolution {
      * @return
      */
     private int searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
+        System.out.println("RunningValue: " + runningValue);
         int sum = runningValue;
         Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
         for (Offer offer : filteredOffers) {
+            System.out.println("applying offer: " + offer.item);
             sum = runningValue;
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
             sum += applyOffer(updatedBasket, offer);
@@ -77,9 +79,12 @@ public class CheckoutSolution {
         }
 
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
+            System.out.println("Before, Sum is: " + sum);
             sum += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
+            System.out.println("After, Sum is: " + sum);
         }
         if (sum < bestResult) {
+            System.out.println("Updating best result value with " + sum);
             bestResult = sum;
         }
 
@@ -123,8 +128,3 @@ public class CheckoutSolution {
         return false;
     }
 }
-
-
-
-
-

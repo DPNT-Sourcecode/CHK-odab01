@@ -51,7 +51,7 @@ public class CheckoutSolution {
     }
 
     /**
-     * @param basket
+     * @param basket - The basket with all the items the customer wants to buy
      * @return whether the input is valid or not. If not, we stop running and return -1
      */
     private boolean invalidInput(Map<Character, Integer> basket) {
@@ -61,8 +61,8 @@ public class CheckoutSolution {
     /**
      * Recursively, go through all different options until we find the best option for the customer to save money
      *
-     * @param basket
-     * @param runningValue
+     * @param basket       - The current basket that the customer wants to buy
+     * @param runningValue - The current amout of the bill with the items that have been bought already
      */
     private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
         int sum = runningValue;
@@ -85,8 +85,8 @@ public class CheckoutSolution {
     /**
      * Apply the offer passed as input parameter
      *
-     * @param basket
-     * @param offer
+     * @param basket - The current basket content after all the previous temporal operations have been applied
+     * @param offer  - the offer to apply
      * @return the cost after the offer has been applied
      */
     private int applyOffer(Map<Character, Integer> basket, Offer offer) {
@@ -108,8 +108,8 @@ public class CheckoutSolution {
     }
 
     /**
-     * @param basket
-     * @param offer
+     * @param basket - The current basket content after all the previous temporal operations have been applied
+     * @param offer  - The offer to check
      * @return a boolean indicating wheter the offer can be applied or not
      */
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
@@ -128,3 +128,4 @@ public class CheckoutSolution {
         return false;
     }
 }
+

@@ -25,6 +25,10 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
 
+        Comparator<Offer> comparator = (offer1, offer2) -> {
+            
+        };
+
         Map<Character, Integer> basket = new HashMap<>();
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
@@ -96,4 +100,5 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 

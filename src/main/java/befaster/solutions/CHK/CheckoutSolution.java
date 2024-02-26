@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class CheckoutSolution {
 
-    List<StockKeepingUnit> skus = List.of(
+    List<StockKeepingUnit> stock = List.of(
             new StockKeepingUnit("A", 50),
             new StockKeepingUnit("B", 30),
             new StockKeepingUnit("C", 20),
@@ -28,9 +28,11 @@ public class CheckoutSolution {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
 
-        applyOffers(basket);
+        int sum = applyOffers(basket);
 
-        
+        basket.forEach((key, value) -> {
+            stock.stream().filter(it -> it.item == key).c
+        });
 
 
         return bill;
@@ -57,6 +59,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 

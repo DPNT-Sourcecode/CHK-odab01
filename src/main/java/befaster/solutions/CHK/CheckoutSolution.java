@@ -67,7 +67,7 @@ public class CheckoutSolution {
                 if (basket.containsKey(offer.item) && basket.get(offer.item) >= offer.units) {
                     offerApplied = true;
                     int numTimesApplied = basket.get(offer.item) / offer.units;
-                    sum = numTimesApplied * offer.price;
+                    sum += numTimesApplied * offer.price;
                     if (basket.get(offer.item) % offer.units == 0) {
                         basket.remove(offer.item);
                     } else {
@@ -79,6 +79,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 

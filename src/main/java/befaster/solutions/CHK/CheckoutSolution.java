@@ -1,11 +1,9 @@
 package befaster.solutions.CHK;
 
+import befaster.supermarket.GroupOffer;
 import befaster.supermarket.Offer;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -60,21 +58,26 @@ public class CheckoutSolution {
 
     // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
     Set<Offer> offers = new TreeSet<>(Set.of(
-            new Offer('A', 3, 130, null, false),
-            new Offer('A', 5, 200, null, false),
-            new Offer('B', 2, 45, null, false),
-            new Offer('E', 2, 80, 'B', true),
-            new Offer('F', 2, 20, 'F', true),
-            new Offer('H', 5, 45, null, false),
-            new Offer('H', 10, 80, null, true),
-            new Offer('K', 2, 120, null, true),
-            new Offer('N', 3, 120, 'M', true),
-            new Offer('P', 5, 200, null, true),
-            new Offer('Q', 3, 80, null, false),
-            new Offer('R', 3, 150, 'Q', true),
-            new Offer('U', 3, 120, 'U', true),
-            new Offer('V', 2, 90, null, false),
-            new Offer('V', 3, 130, null, true)
+            new Offer('A', 3, 130, null, false, null),
+            new Offer('A', 5, 200, null, false, null),
+            new Offer('B', 2, 45, null, false, null),
+            new Offer('E', 2, 80, 'B', true, null),
+            new Offer('F', 2, 20, 'F', true, null),
+            new Offer('H', 5, 45, null, false, null),
+            new Offer('H', 10, 80, null, true, null),
+            new Offer('K', 2, 120, null, true, null),
+            new Offer('N', 3, 120, 'M', true, null),
+            new Offer('P', 5, 200, null, true, null),
+            new Offer('Q', 3, 80, null, false, null),
+            new Offer('R', 3, 150, 'Q', true, null),
+            new Offer('U', 3, 120, 'U', true, null),
+            new Offer('V', 2, 90, null, false, null),
+            new Offer('V', 3, 130, null, true, null),
+            new Offer('*', 3, 45, null, true, new LinkedHashSet<>(Set.of('Z', 'Y', 'S', 'T', 'X')))
+    ));
+
+    Set<GroupOffer> groupOffers = new TreeSet<>(Set.of(
+            new GroupOffer(new LinkedHashSet<>(Set.of('Z', 'Y', 'S', 'T', 'X')), 3, 45)
     ));
 
     int bestResult;
@@ -139,28 +142,38 @@ public class CheckoutSolution {
      * @return the cost after the offer has been applied
      */
     private int applyOffer(Map<Character, Integer> basket, Offer offer) {
-        int desiredAmount = basket.get(offer.item);
-        int numOfUnitsPerOffer = offer.units;
-        if (offer.freeItem == offer.item) {
-            numOfUnitsPerOffer++;
-        }
-        int numTimesApplied = desiredAmount / numOfUnitsPerOffer;
-
-        if (basket.get(offer.item) - (numTimesApplied * numOfUnitsPerOffer) <= 0) {
-            basket.remove(offer.item);
-        } else {
-            basket.put(offer.item, basket.get(offer.item) - (numOfUnitsPerOffer * numTimesApplied));
-        }
-
-        if (basket.containsKey(offer.freeItem) && offer.freeItem != offer.item) {
-            if (basket.get(offer.freeItem) - numTimesApplied <= 0) {
-                basket.remove(offer.freeItem);
-            } else {
-                basket.put(offer.freeItem, basket.get(offer.freeItem) - numTimesApplied);
+        if (!offer.items.isEmpty()) {
+            int numOfAffectedItems = 0;
+            int sumOfElements = 0;
+            for (Character element : offer.items) {
+                numOfAffectedItems += basket.getOrDefault(element, 0);
             }
-        }
+            for(int i)
+        } else {
 
-        return offer.price * numTimesApplied;
+            int desiredAmount = basket.get(offer.item);
+            int numOfUnitsPerOffer = offer.units;
+            if (offer.freeItem == offer.item) {
+                numOfUnitsPerOffer++;
+            }
+            int numTimesApplied = desiredAmount / numOfUnitsPerOffer;
+
+            if (basket.get(offer.item) - (numTimesApplied * numOfUnitsPerOffer) <= 0) {
+                basket.remove(offer.item);
+            } else {
+                basket.put(offer.item, basket.get(offer.item) - (numOfUnitsPerOffer * numTimesApplied));
+            }
+
+            if (basket.containsKey(offer.freeItem) && offer.freeItem != offer.item) {
+                if (basket.get(offer.freeItem) - numTimesApplied <= 0) {
+                    basket.remove(offer.freeItem);
+                } else {
+                    basket.put(offer.freeItem, basket.get(offer.freeItem) - numTimesApplied);
+                }
+            }
+
+            return offer.price * numTimesApplied;
+        }
     }
 
     /**
@@ -169,18 +182,28 @@ public class CheckoutSolution {
      * @return a boolean indicating wheter the offer can be applied or not
      */
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
-        int numberOfItemsRequired = offer.units;
-        if (offer.freeItem == offer.item) {
-            numberOfItemsRequired++;
-        }
-        if (basket.containsKey(offer.item) && basket.get(offer.item) >= numberOfItemsRequired) {
-            if (offer.freeItem != null) {
-                // The offer is only worth it in case the free item is already in the basket
-                return basket.containsKey(offer.freeItem);
-            } else {
-                return true;
+        if (!offer.items.isEmpty()) {
+            int numOfAffectedItems = 0;
+            for (Character element : offer.items) {
+                numOfAffectedItems += basket.getOrDefault(element, 0);
             }
+            return numOfAffectedItems >= offer.units;
+        } else {
+
+            int numberOfItemsRequired = offer.units;
+            if (offer.freeItem == offer.item) {
+                numberOfItemsRequired++;
+            }
+            if (basket.containsKey(offer.item) && basket.get(offer.item) >= numberOfItemsRequired) {
+                if (offer.freeItem != null) {
+                    // The offer is only worth it in case the free item is already in the basket
+                    return basket.containsKey(offer.freeItem);
+                } else {
+                    return true;
+                }
+            }
+            return false;
         }
-        return false;
     }
 }
+

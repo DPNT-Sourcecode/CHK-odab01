@@ -1,5 +1,7 @@
 package befaster.supermarket;
 
+import java.util.Set;
+
 public class Offer implements Comparable<Offer> {
 
     public Character item;
@@ -7,13 +9,15 @@ public class Offer implements Comparable<Offer> {
     public int price;
     public Character freeItem;
     public boolean isolated;
+    public Set<Character> items;
 
-    public Offer(Character item, int units, int price, Character freeItem, boolean isolated) {
+    public Offer(Character item, int units, int price, Character freeItem, boolean isolated, Set<Character> items) {
         this.item = item;
         this.units = units;
         this.price = price;
         this.freeItem = freeItem;
         this.isolated = isolated;
+        this.items = items;
     }
 
     @Override
@@ -31,3 +35,4 @@ public class Offer implements Comparable<Offer> {
         }
     }
 }
+

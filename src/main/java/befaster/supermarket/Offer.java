@@ -1,5 +1,6 @@
 package befaster.supermarket;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Offer implements Comparable<Offer> {
@@ -11,13 +12,16 @@ public class Offer implements Comparable<Offer> {
     public boolean isolated;
     public Set<Character> items;
 
-    public Offer(Character item, int units, int price, Character freeItem, boolean isolated, Set<Character> items) {
+    public Offer(Character item, int units, int price, Character freeItem, boolean isolated, String itemsStr) {
         this.item = item;
         this.units = units;
         this.price = price;
         this.freeItem = freeItem;
         this.isolated = isolated;
-        this.items = items;
+        this.items = new LinkedHashSet<>();
+        for (Character element : itemsStr.toCharArray()) {
+            items.add(element);
+        }
     }
 
     @Override
@@ -35,3 +39,4 @@ public class Offer implements Comparable<Offer> {
         }
     }
 }
+

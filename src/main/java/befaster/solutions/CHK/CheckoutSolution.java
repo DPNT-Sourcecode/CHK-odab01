@@ -75,7 +75,7 @@ public class CheckoutSolution {
             new Offer('U', 3, 120, 'U', true, null),
             new Offer('V', 2, 90, null, false, null),
             new Offer('V', 3, 130, null, true, null),
-            new Offer('*', 3, 45, null, true, )
+            new Offer('*', 3, 45, null, true, "ZYSTX")
     ));
 
 //    Set<GroupOffer> groupOffers = new TreeSet<>(Set.of(
@@ -88,6 +88,7 @@ public class CheckoutSolution {
 
         bestResult = Integer.MAX_VALUE;
         Map<Character, Integer> basket = new HashMap<>();
+
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
@@ -222,6 +223,7 @@ public class CheckoutSolution {
         }
     }
 }
+
 
 
 

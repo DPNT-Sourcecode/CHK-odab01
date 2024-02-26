@@ -31,7 +31,7 @@ public class CheckoutSolution {
         int sum = applyOffers(basket);
 
         basket.forEach((key, value) -> {
-            stock.stream().filter(it -> it.item == key).c
+            stock.stream().filter(it -> it.item == key).findFirst().get().price;
         });
 
 
@@ -59,6 +59,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 

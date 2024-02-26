@@ -22,4 +22,3 @@ public class Offer implements Comparable<Offer> {
         return Double.compare(otherOffer.totalDiscount / otherOffer.units, this.totalDiscount / this.units);
     }
 }
-

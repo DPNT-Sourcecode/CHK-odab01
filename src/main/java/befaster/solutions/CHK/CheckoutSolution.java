@@ -157,7 +157,3 @@ public class CheckoutSolution {
         return false;
     }
 }
-
-
-
-

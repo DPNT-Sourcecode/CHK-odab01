@@ -67,7 +67,7 @@ public class CheckoutSolution {
             new Offer('F', 2, 20, 'F', true),
             new Offer('H', 5, 45, null, false),
             new Offer('H', 10, 80, null, true),
-            new Offer('K', 2, 120, null, true),  // changed
+            new Offer('K', 2, 120, null, true),
             new Offer('N', 3, 120, 'M', true),
             new Offer('P', 5, 200, null, true),
             new Offer('Q', 3, 80, null, false),
@@ -184,3 +184,4 @@ public class CheckoutSolution {
         return false;
     }
 }
+

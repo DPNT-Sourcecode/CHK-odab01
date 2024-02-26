@@ -1,6 +1,5 @@
 package befaster.solutions.CHK;
 
-import befaster.supermarket.GroupOffer;
 import befaster.supermarket.Offer;
 
 import java.util.*;
@@ -143,7 +142,7 @@ public class CheckoutSolution {
      */
     private int applyOffer(Map<Character, Integer> basket, Offer offer) {
         int numTimesApplied = 0;
-        if (!offer.items.isEmpty()) {
+        if (offer.items != null) {
             int numOfAffectedItems = 0;
             for (Character element : offer.items) {
                 numOfAffectedItems += basket.getOrDefault(element, 0);
@@ -196,7 +195,7 @@ public class CheckoutSolution {
      * @return a boolean indicating wheter the offer can be applied or not
      */
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
-        if (!offer.items.isEmpty()) {
+        if (offer.items != null) {
             int numOfAffectedItems = 0;
             for (Character element : offer.items) {
                 numOfAffectedItems += basket.getOrDefault(element, 0);
@@ -220,4 +219,5 @@ public class CheckoutSolution {
         }
     }
 }
+
 

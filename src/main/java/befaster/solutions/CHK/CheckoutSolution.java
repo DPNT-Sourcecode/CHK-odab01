@@ -17,8 +17,8 @@ public class CheckoutSolution {
     );
 
     List<Offer> offers = List.of(
-            new Offer(new StockKeepingUnit("A", 50d), 3, 130d),
-            new Offer(new StockKeepingUnit("B", 50d), 2, 45d)
+            new Offer("A", 3, 130d),
+            new Offer("B", 2, 45d)
     );
 
     public Integer checkout(String skus) {
@@ -36,16 +36,24 @@ public class CheckoutSolution {
         return bill;
     }
 
-    private void anyOfferApplicable(Map<Character, Integer> basket) {
+    private int anyOfferApplicable(Map<Character, Integer> basket) {
         boolean offerApplied = true;
+        int sum = 0;
         while (offerApplied) {
-            offers.stream().forEach(offer ->
-                    
-                if (basket.containsKey(offer. item)) {
-
-                }
+            offers.stream().forEach(offer -> {
+                        if (basket.containsKey(offer.item) && basket.get(offer.item) >= offer.units) {
+                            int numTimesApplied = basket.get(offer.item) / offer.units;
+                            sum = numTimesApplied * offer.price;
+                            if (basket.get(offer.item) % offer.units == 0) {
+                                basket.remove(offer.item);
+                            } else {
+                                basket.put(offer.item, basket.get(offer.item) % offer.units);
+                            }
+                        }
+                    }
             );
         }
 
     }
 }
+

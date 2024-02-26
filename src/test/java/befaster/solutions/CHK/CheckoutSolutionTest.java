@@ -17,10 +17,16 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test1() {
+    public void normalCases() {
         assertThat(checkoutSolution.checkout("A"), equalTo(50));
         assertThat(checkoutSolution.checkout("B"), equalTo(30));
         assertThat(checkoutSolution.checkout("ABCDDD"), equalTo(145));
+    }
+
+    @Test
+    public void edgeCases() {
         assertThat(checkoutSolution.checkout(""), equalTo(0));
+        assertThat(checkoutSolution.checkout("Z"), equalTo(-1));
     }
 }
+

@@ -2,7 +2,10 @@ package befaster.solutions.CHK;
 
 import befaster.supermarket.Offer;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -93,7 +96,7 @@ public class CheckoutSolution {
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
-        List<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toList());
+        TreeSet<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toCollection(TreeSet::new));
 
         // Checking valid input. If not, exit the program -> -1
         if (invalidInput(basket)) {
@@ -120,13 +123,19 @@ public class CheckoutSolution {
      * @param basket       - The current basket that the customer wants to buy
      * @param runningValue - The current amount of the bill with the items that have been bought already
      */
-    private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue, List<Offer> potentialOffers) {
+    private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue, Set<Offer> potentialOffers) {
         int sum = runningValue;
-        List<Offer> filteredOffers = potentialOffers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toList());
-        for (Offer offer : filteredOffers) {
-            sum = runningValue;
+        TreeSet<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toCollection(TreeSet::new));
+//        for (Offer offer : filteredOffers) {
+//            sum = runningValue;
+//            Map<Character, Integer> updatedBasket = new HashMap<>(basket);
+//            sum += applyOffer(updatedBasket, offer);
+//            searchOptimalUseOfOffers(updatedBasket, sum, filteredOffers);
+//        }
+        if (!filteredOffers.isEmpty()) {
+//            sum = runningValue;
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
-            sum += applyOffer(updatedBasket, offer);
+            sum += applyOffer(updatedBasket, filteredOffers.stream().findFirst().get());
             searchOptimalUseOfOffers(updatedBasket, sum, filteredOffers);
         }
 
@@ -186,6 +195,7 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 
 

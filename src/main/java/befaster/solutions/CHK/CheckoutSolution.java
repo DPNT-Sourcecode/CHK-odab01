@@ -29,13 +29,12 @@ public class CheckoutSolution {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
 
+        // Checking valid input. If not, exit the program -> -1
         if (invalidInput(basket)) {
             return -1;
         }
 
-
         int bill = applyOffers(basket);
-
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
             bill += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
         }
@@ -43,11 +42,22 @@ public class CheckoutSolution {
         return bill;
     }
 
-    // Method to check if any input is invalid, so 
+    /**
+     * Check if the input is valid. Otherwise, we stop running and return -1
+     *
+     * @param basket
+     * @return
+     */
     private boolean invalidInput(Map<Character, Integer> basket) {
         return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
     }
 
+    /**
+     * Apply offers until none of them could be applied to the remaining elements in the basket
+     *
+     * @param basket
+     * @return
+     */
     private int applyOffers(Map<Character, Integer> basket) {
         boolean offerApplied = true;
         int sum = 0;
@@ -69,6 +79,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 

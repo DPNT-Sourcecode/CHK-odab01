@@ -24,11 +24,19 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void offerCases() {
+        assertThat(checkoutSolution.checkout("ABCADA"), equalTo(195));
+        assertThat(checkoutSolution.checkout("ABCADAA"), equalTo(245));
+        assertThat(checkoutSolution.checkout("AABAACAA"), equalTo(310));
+    }
+
+    @Test
     public void edgeCases() {
         assertThat(checkoutSolution.checkout(""), equalTo(0));
         assertThat(checkoutSolution.checkout("Z"), equalTo(-1));
         assertThat(checkoutSolution.checkout("ABCZDDD"), equalTo(-1));
     }
 }
+
 
 

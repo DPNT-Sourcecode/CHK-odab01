@@ -77,6 +77,9 @@ public class CheckoutSolution {
         for (Offer offer : filteredOffers) {
             sum += applyOffer(basket, offer);
             sum += applyOffers(basket);
+            if(sum < betterResult){
+                betterResult = sum;
+            }
         }
 
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
@@ -144,4 +147,5 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 

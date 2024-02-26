@@ -27,6 +27,8 @@ public class CheckoutSolutionTest {
     public void edgeCases() {
         assertThat(checkoutSolution.checkout(""), equalTo(0));
         assertThat(checkoutSolution.checkout("Z"), equalTo(-1));
+        assertThat(checkoutSolution.checkout("ABCZDDD"), equalTo(-1));
     }
 }
+
 

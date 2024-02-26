@@ -43,6 +43,7 @@ public class CheckoutSolution {
         return bill;
     }
 
+    // Method to check if any input is invalid, so 
     private boolean invalidInput(Map<Character, Integer> basket) {
         return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
     }
@@ -68,5 +69,6 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 

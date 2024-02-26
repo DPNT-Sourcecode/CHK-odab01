@@ -16,5 +16,11 @@ public class Offer {
         this.freeItems = freeItems;
     }
 
+    @Override
+    public int compareTo(Offer otherOffer){
+        
+    }
+
 }
+
 

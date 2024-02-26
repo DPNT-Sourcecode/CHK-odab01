@@ -55,6 +55,9 @@ public class CheckoutSolution {
 //            new Offer('V', 3, 130, null, true)
 //    ));
 
+    Set<Character> setOfItems = new LinkedHashSet<>();
+
+
     // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
     Set<Offer> offers = new TreeSet<>(Set.of(
             new Offer('A', 3, 130, null, false, null),
@@ -72,7 +75,7 @@ public class CheckoutSolution {
             new Offer('U', 3, 120, 'U', true, null),
             new Offer('V', 2, 90, null, false, null),
             new Offer('V', 3, 130, null, true, null),
-            new Offer('*', 3, 45, null, true, new LinkedHashSet<>(Set.of('Z', 'Y', 'S', 'T', 'X')))
+            new Offer('*', 3, 45, null, true, )
     ));
 
 //    Set<GroupOffer> groupOffers = new TreeSet<>(Set.of(
@@ -219,5 +222,6 @@ public class CheckoutSolution {
         }
     }
 }
+
 
 

@@ -8,12 +8,14 @@ public class Offer implements Comparable<Offer> {
     public int units;
     public int price;
     public List<Character> freeItems;
+    public double totalDiscount;
 
-    public Offer(Character item, int units, int price, List<Character> freeItems) {
+    public Offer(Character item, int units, int price, List<Character> freeItems, double totalDiscount) {
         this.item = item;
         this.units = units;
         this.price = price;
         this.freeItems = freeItems;
+        this.totalDiscount = totalDiscount;
     }
 
     @Override
@@ -23,10 +25,7 @@ public class Offer implements Comparable<Offer> {
             return itemComparison;
         }
 
-        // If items are equal, order by number of items in the offer
-        return Integer.compare(otherOffer.units, this.units);
+        // If items are equal, order by the discount we get per item
+        return Double.compare(otherOffer.totalDiscount / otherOffer.units, this.totalDiscount / this.units);
     }
 }
-
-
-

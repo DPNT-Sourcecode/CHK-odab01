@@ -16,10 +16,11 @@ public class CheckoutSolution {
     );
 
     Set<Offer> offers = new TreeSet<>(Set.of(
-            new Offer('A', 3, 130, new ArrayList<>()),
-            new Offer('A', 5, 200, new ArrayList<>()),
-            new Offer('B', 2, 45, new ArrayList<>()),
-            new Offer('E', 2, 80, List.of('B'))
+            new Offer('A', 3, 130, new ArrayList<>(), 20),
+            new Offer('A', 5, 200, new ArrayList<>(), 50),
+            new Offer('A', 5, 200, new ArrayList<>(), 55),
+            new Offer('B', 2, 45, new ArrayList<>(), 15),
+            new Offer('E', 2, 80, List.of('B'), 30)
     ));
 
     public Integer checkout(String skus) {
@@ -82,5 +83,3 @@ public class CheckoutSolution {
         return sum;
     }
 }
-
-

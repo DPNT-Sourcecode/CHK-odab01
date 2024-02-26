@@ -34,7 +34,10 @@ public class CheckoutSolution {
             return -1;
         }
 
+        // First, we try to apply as much offers as possible
         int bill = applyOffers(basket);
+
+        // Then, we calculate the total bill with the remaining elements in the basket
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
             bill += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
         }
@@ -79,6 +82,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 

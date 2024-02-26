@@ -10,35 +10,6 @@ import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
-//    List<StockKeepingUnit> stock = List.of(
-//            new StockKeepingUnit('A', 50),
-//            new StockKeepingUnit('B', 30),
-//            new StockKeepingUnit('C', 20),
-//            new StockKeepingUnit('D', 15),
-//            new StockKeepingUnit('E', 40),
-//            new StockKeepingUnit('F', 10),
-//            new StockKeepingUnit('G', 20),
-//            new StockKeepingUnit('H', 10),
-//            new StockKeepingUnit('I', 35),
-//            new StockKeepingUnit('J', 60),
-//            new StockKeepingUnit('K', 80),
-//            new StockKeepingUnit('L', 90),
-//            new StockKeepingUnit('M', 15),
-//            new StockKeepingUnit('N', 40),
-//            new StockKeepingUnit('O', 10),
-//            new StockKeepingUnit('P', 50),
-//            new StockKeepingUnit('Q', 30),
-//            new StockKeepingUnit('R', 50),
-//            new StockKeepingUnit('S', 30),
-//            new StockKeepingUnit('T', 20),
-//            new StockKeepingUnit('U', 40),
-//            new StockKeepingUnit('V', 50),
-//            new StockKeepingUnit('W', 20),
-//            new StockKeepingUnit('X', 90),
-//            new StockKeepingUnit('Y', 10),
-//            new StockKeepingUnit('Z', 50)
-//    );
-
     Map<Character, Integer> stock = Map.ofEntries(
             Map.entry('A', 50),
             Map.entry('B', 30),
@@ -120,20 +91,14 @@ public class CheckoutSolution {
     /**
      * Recursively, go through all different options until we find the best option for the customer to save money
      *
-     * @param basket       - The current basket that the customer wants to buy
-     * @param runningValue - The current amount of the bill with the items that have been bought already
+     * @param basket          - The current basket that the customer wants to buy
+     * @param runningValue    - The current amount of the bill with the items that have been bought already
+     * @param potentialOffers - TreeSet of the potential offers to be applied
      */
     private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue, Set<Offer> potentialOffers) {
         int sum = runningValue;
-        TreeSet<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toCollection(TreeSet::new));
-//        for (Offer offer : filteredOffers) {
-//            sum = runningValue;
-//            Map<Character, Integer> updatedBasket = new HashMap<>(basket);
-//            sum += applyOffer(updatedBasket, offer);
-//            searchOptimalUseOfOffers(updatedBasket, sum, filteredOffers);
-//        }
+        TreeSet<Offer> filteredOffers = potentialOffers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toCollection(TreeSet::new));
         if (!filteredOffers.isEmpty()) {
-//            sum = runningValue;
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
             sum += applyOffer(updatedBasket, filteredOffers.stream().findFirst().get());
             searchOptimalUseOfOffers(updatedBasket, sum, filteredOffers);
@@ -200,4 +165,5 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 

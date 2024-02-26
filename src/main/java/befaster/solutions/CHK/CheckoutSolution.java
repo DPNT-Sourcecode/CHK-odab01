@@ -21,7 +21,7 @@ public class CheckoutSolution {
             Map.entry('H', 10),
             Map.entry('I', 35),
             Map.entry('J', 60),
-            Map.entry('K', 80),
+            Map.entry('K', 70), // changed
             Map.entry('L', 90),
             Map.entry('M', 15),
             Map.entry('N', 40),
@@ -39,6 +39,25 @@ public class CheckoutSolution {
             Map.entry('Z', 50)
     );
 
+//    // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
+//    Set<Offer> offers = new TreeSet<>(Set.of(
+//            new Offer('A', 3, 130, null, false),
+//            new Offer('A', 5, 200, null, false),
+//            new Offer('B', 2, 45, null, false),
+//            new Offer('E', 2, 80, 'B', true),
+//            new Offer('F', 2, 20, 'F', true),
+//            new Offer('H', 5, 45, null, false),
+//            new Offer('H', 10, 80, null, true),
+//            new Offer('K', 2, 150, null, true),
+//            new Offer('N', 3, 120, 'M', true),
+//            new Offer('P', 5, 200, null, true),
+//            new Offer('Q', 3, 80, null, false),
+//            new Offer('R', 3, 150, 'Q', true),
+//            new Offer('U', 3, 120, 'U', true),
+//            new Offer('V', 2, 90, null, false),
+//            new Offer('V', 3, 130, null, true)
+//    ));
+
     // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
     Set<Offer> offers = new TreeSet<>(Set.of(
             new Offer('A', 3, 130, null, false),
@@ -48,7 +67,7 @@ public class CheckoutSolution {
             new Offer('F', 2, 20, 'F', true),
             new Offer('H', 5, 45, null, false),
             new Offer('H', 10, 80, null, true),
-            new Offer('K', 2, 150, null, true),
+            new Offer('K', 2, 120, null, true),  // changed
             new Offer('N', 3, 120, 'M', true),
             new Offer('P', 5, 200, null, true),
             new Offer('Q', 3, 80, null, false),
@@ -165,6 +184,7 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 
 

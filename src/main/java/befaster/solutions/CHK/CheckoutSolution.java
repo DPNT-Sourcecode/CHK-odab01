@@ -44,18 +44,18 @@ public class CheckoutSolution {
             new Offer('A', 3, 130, null, false),
             new Offer('A', 5, 200, null, false),
             new Offer('B', 2, 45, null, false),
-            new Offer('E', 2, 80, 'B', true), //
-            new Offer('F', 2, 20, 'F', true), //
+            new Offer('E', 2, 80, 'B', true),
+            new Offer('F', 2, 20, 'F', true),
             new Offer('H', 5, 45, null, false),
             new Offer('H', 10, 80, null, true),
-            new Offer('K', 2, 150, null, true), //
-            new Offer('N', 3, 120, 'M', true), //
-            new Offer('P', 5, 200, null, true), //
+            new Offer('K', 2, 150, null, true),
+            new Offer('N', 3, 120, 'M', true),
+            new Offer('P', 5, 200, null, true),
             new Offer('Q', 3, 80, null, false),
-            new Offer('R', 3, 150, 'Q', true), //
-            new Offer('U', 3, 120, 'U', true), //
+            new Offer('R', 3, 150, 'Q', true),
+            new Offer('U', 3, 120, 'U', true),
             new Offer('V', 2, 90, null, false),
-            new Offer('V', 3, 130, null, true) // better
+            new Offer('V', 3, 130, null, true)
     ));
 
     int bestResult;
@@ -165,5 +165,6 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 

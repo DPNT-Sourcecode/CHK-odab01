@@ -2,15 +2,14 @@ package befaster.supermarket;
 
 public class Offer {
 
-    private StockKeepingUnit sku;
-    private int units;
-    private double price;
+    public String item;
+    public int units;
+    public double price;
 
-    public Offer(StockKeepingUnit sku, int units, double price) {
-        this.sku = sku;
+    public Offer(String item, int units, double price) {
+        this.item = item;
         this.units = units;
         this.price = price;
     }
 
 }
-

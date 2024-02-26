@@ -28,7 +28,7 @@ public class CheckoutSolution {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
 
-        while(anyOfferApplicable()){
+        while (anyOfferApplicable()) {
 
         }
 
@@ -36,16 +36,16 @@ public class CheckoutSolution {
         return bill;
     }
 
-    private void anyOfferApplicable(Map<Character, Integer> basket){
+    private void anyOfferApplicable(Map<Character, Integer> basket) {
         boolean offerApplied = true;
-        while(offerApplied){
-            offers.stream().forEach(
+        while (offerApplied) {
+            offers.stream().forEach(offer ->
                     
+                if (basket.containsKey(offer. item)) {
+
+                }
             );
         }
 
     }
 }
-
-
-

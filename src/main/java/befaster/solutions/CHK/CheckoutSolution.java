@@ -6,6 +6,7 @@ import befaster.supermarket.StockKeepingUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
@@ -22,14 +23,16 @@ public class CheckoutSolution {
     );
 
     public Integer checkout(String skus) {
-        if(invalidInput()) {
-            return -1;
-        }
 
         Map<Character, Integer> basket = new HashMap<>();
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
+
+        if (invalidInput(basket)) {
+            return -1;
+        }
+
 
         int bill = applyOffers(basket);
 
@@ -40,9 +43,8 @@ public class CheckoutSolution {
         return bill;
     }
 
-    private boolean invalidInput(){
-
-
+    private boolean invalidInput(Map<Character, Integer> basket) {
+        return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
     }
 
     private int applyOffers(Map<Character, Integer> basket) {
@@ -66,4 +68,5 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 

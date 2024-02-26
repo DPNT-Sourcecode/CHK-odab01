@@ -11,8 +11,10 @@ public class CheckoutSolutionTest {
 
     @Test
     public void normalCases() {
-        assertThat(new CheckoutSolution().checkout("AB"), equalTo(80));
+        assertThat(new CheckoutSolution().checkout("A"), equalTo(50));
         assertThat(new CheckoutSolution().checkout("B"), equalTo(30));
+        assertThat(new CheckoutSolution().checkout("C"), equalTo(20));
+        assertThat(new CheckoutSolution().checkout("AB"), equalTo(80));
         assertThat(new CheckoutSolution().checkout("ABCDDD"), equalTo(145));
     }
 
@@ -40,5 +42,6 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
     }
 }
+
 
 

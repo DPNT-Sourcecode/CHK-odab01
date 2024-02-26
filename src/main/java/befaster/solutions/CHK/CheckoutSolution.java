@@ -18,7 +18,7 @@ public class CheckoutSolution {
             Map.entry('H', 10),
             Map.entry('I', 35),
             Map.entry('J', 60),
-            Map.entry('K', 70), // changed
+            Map.entry('K', 70),
             Map.entry('L', 90),
             Map.entry('M', 15),
             Map.entry('N', 40),
@@ -26,14 +26,14 @@ public class CheckoutSolution {
             Map.entry('P', 50),
             Map.entry('Q', 30),
             Map.entry('R', 50),
-            Map.entry('S', 30),
+            Map.entry('S', 20),
             Map.entry('T', 20),
             Map.entry('U', 40),
             Map.entry('V', 50),
             Map.entry('W', 20),
-            Map.entry('X', 90),
-            Map.entry('Y', 10),
-            Map.entry('Z', 50)
+            Map.entry('X', 17),
+            Map.entry('Y', 20),
+            Map.entry('Z', 21)
     );
 
 //    // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
@@ -223,7 +223,3 @@ public class CheckoutSolution {
         }
     }
 }
-
-
-
-

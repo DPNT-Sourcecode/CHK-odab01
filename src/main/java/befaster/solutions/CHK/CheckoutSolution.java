@@ -76,9 +76,9 @@ public class CheckoutSolution {
             new Offer('*', 3, 45, null, true, new LinkedHashSet<>(Set.of('Z', 'Y', 'S', 'T', 'X')))
     ));
 
-    Set<GroupOffer> groupOffers = new TreeSet<>(Set.of(
-            new GroupOffer(new LinkedHashSet<>(Set.of('Z', 'Y', 'S', 'T', 'X')), 3, 45)
-    ));
+//    Set<GroupOffer> groupOffers = new TreeSet<>(Set.of(
+//            new GroupOffer(new LinkedHashSet<>(Set.of('Z', 'Y', 'S', 'T', 'X')), 3, 45)
+//    ));
 
     int bestResult;
 
@@ -145,11 +145,11 @@ public class CheckoutSolution {
         int numTimesApplied = 0;
         if (!offer.items.isEmpty()) {
             int numOfAffectedItems = 0;
-//            int sumOfElements = 0;
             for (Character element : offer.items) {
                 numOfAffectedItems += basket.getOrDefault(element, 0);
             }
-            int numOfElementsToRemove = (numOfAffectedItems / offer.units);
+            int numOfElementsToRemove = (numOfAffectedItems / offer.units) * offer.units;
+            numTimesApplied = (numOfAffectedItems / offer.units);
             for (Character element : offer.items) {
                 if (numOfElementsToRemove > 0) {
                     int existingCharacters = basket.getOrDefault(element, 0);
@@ -186,9 +186,8 @@ public class CheckoutSolution {
                     basket.put(offer.freeItem, basket.get(offer.freeItem) - numTimesApplied);
                 }
             }
-
-            return offer.price * numTimesApplied;
         }
+        return offer.price * numTimesApplied;
     }
 
     /**
@@ -221,3 +220,4 @@ public class CheckoutSolution {
         }
     }
 }
+

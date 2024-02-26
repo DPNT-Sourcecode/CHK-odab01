@@ -23,6 +23,8 @@ public class CheckoutSolution {
             new Offer('E', 2, 80, 'B', 30)
     ));
 
+    int betterResult = Integer.MAX_VALUE;
+
     public Integer checkout(String skus) {
 
         Comparator<Offer> comparator = getOfferComparator();
@@ -69,43 +71,77 @@ public class CheckoutSolution {
         return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
     }
 
+    private int applyOffers(Map<Character, Integer> basket) {
+        int sum = 0;
+        Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
+        for (Offer offer : filteredOffers) {
+            sum += applyOffer(basket, offer);
+            sum += applyOffers(basket);
+        }
+
+        for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
+            sum += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
+        }
+//        if (sum < betterResult) {
+//            betterResult = sum;
+//        }
+        return sum;
+    }
+
+    private int applyOffer(Map<Character, Integer> basket, Offer offer) {
+        if (basket.get(offer.item) - offer.units == 0) {
+            basket.remove(offer.item);
+        } else {
+            basket.put(offer.item, basket.get(offer.item) - offer.units);
+        }
+
+        if (basket.get(offer.freeItem) - 1 == 0) {
+            basket.remove(offer.freeItem);
+        } else {
+            basket.put(offer.freeItem, basket.get(offer.freeItem) - 1);
+        }
+
+        return offer.price;
+    }
+
+
     /**
      * Apply offers until none of them could be applied to the remaining elements in the basket
      *
      * @param basket
      * @return
      */
-    private int applyOffers(Map<Character, Integer> basket) {
-        boolean offerApplied = true;
-        int sum = 0;
-        while (offerApplied) {
-            offerApplied = false;
-            // Offers are already sorted by relevance due to a customised comparator so we always favor the customer
-            for (Offer offer : offers) {
-                if (isOfferApplicable(basket, offer)) {
-                    offerApplied = true;
-                    int numTimesApplied = basket.get(offer.item) / offer.units;
-                    sum += numTimesApplied * offer.price;
-                    if (basket.get(offer.item) % offer.units == 0) {
-                        basket.remove(offer.item);
-                    } else {
-                        basket.put(offer.item, basket.get(offer.item) % offer.units);
-                    }
-                }
-            }
-        }
-        return sum;
-    }
-
+//    private int applyOffers(Map<Character, Integer> basket) {
+//        boolean offerApplied = true;
+//        int sum = 0;
+//        while (offerApplied) {
+//            offerApplied = false;
+    // Offers are already sorted by relevance due to a customised comparator so we always favor the customer
+//            for (Offer offer : offers) {
+//                if (isOfferApplicable(basket, offer)) {
+//                    offerApplied = true;
+//                    int numTimesApplied = basket.get(offer.item) / offer.units;
+//                    sum += numTimesApplied * offer.price;
+//                    if (basket.get(offer.item) % offer.units == 0) {
+//                        basket.remove(offer.item);
+//                    } else {
+//                        basket.put(offer.item, basket.get(offer.item) % offer.units);
+//                    }
+//                }
+//            }
+//        }
+//        return sum;
+//    }
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
         if (basket.containsKey(offer.item) && basket.get(offer.item) >= offer.units) {
             if (offer.freeItem != null) {
                 return true;
             } else {
                 // The offer is only worth it in case the free item is already in the basket
-                return basket.containsKey(offer.item);
+                return basket.containsKey(offer.freeItem);
             }
         }
         return false;
     }
 }
+

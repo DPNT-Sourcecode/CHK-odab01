@@ -40,14 +40,14 @@ public class CheckoutSolution {
         }
 
         // First, we try to apply as much offers as possible
-        searchOptimalUseOfOffers(basket);
+        int result = searchOptimalUseOfOffers(basket);
 
         // Then, we calculate the total bill with the remaining elements in the basket
 //        for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
 //            bill += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
 //        }
 
-        return bestResult;
+        return Math.min(result, bestResult);
     }
 
 //    private Comparator<Offer> getOfferComparator(String skus, Map<Character, Integer> basket) {
@@ -148,5 +148,6 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 

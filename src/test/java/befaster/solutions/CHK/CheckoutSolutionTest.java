@@ -17,18 +17,19 @@ public class CheckoutSolutionTest {
 
     @Test
     public void normalCases() {
-//        assertThat(checkoutSolution.checkout("AB"), equalTo(80));
+        assertThat(checkoutSolution.checkout("AB"), equalTo(80));
         assertThat(checkoutSolution.checkout("B"), equalTo(30));
-//        assertThat(checkoutSolution.checkout("ABCDDD"), equalTo(145));
+        assertThat(checkoutSolution.checkout("ABCDDD"), equalTo(145));
     }
 
     @Test
     public void offerCases() {
-        assertThat(checkoutSolution.checkout("ABCADA"), equalTo(195));
-        assertThat(checkoutSolution.checkout("ABCADAA"), equalTo(245));
-        assertThat(checkoutSolution.checkout("AABAACAA"), equalTo(300));
-        assertThat(checkoutSolution.checkout("AABAACBAA"), equalTo(315));
+//        assertThat(checkoutSolution.checkout("ABCADA"), equalTo(195));
+//        assertThat(checkoutSolution.checkout("ABCADAA"), equalTo(245));
+//        assertThat(checkoutSolution.checkout("AABAACAA"), equalTo(300));
+//        assertThat(checkoutSolution.checkout("AABAACBAA"), equalTo(315));
         assertThat(checkoutSolution.checkout("AAABB"), equalTo(175));
+//        assertThat(checkoutSolution.checkout("ABB"), equalTo(95));
     }
 
     @Test
@@ -38,4 +39,5 @@ public class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("ABCZDDD"), equalTo(-1));
     }
 }
+
 

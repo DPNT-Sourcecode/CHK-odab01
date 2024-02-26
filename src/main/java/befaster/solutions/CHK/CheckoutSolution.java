@@ -49,11 +49,14 @@ public class CheckoutSolution {
                             } else {
                                 basket.put(offer.item, basket.get(offer.item) % offer.units);
                             }
+                        } else {
+                            offerApplied = false;
                         }
                     }
             );
         }
-
+        return sum;
     }
 }
+
 

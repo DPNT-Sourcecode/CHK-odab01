@@ -78,7 +78,7 @@ public class CheckoutSolution {
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
             sum = applyOffer(updatedBasket, offer);
             sum += searchOptimalUseOfOffers(updatedBasket);
-            if(sum < bestResult){
+            if (sum < bestResult) {
                 bestResult = sum;
             }
         }
@@ -97,10 +97,12 @@ public class CheckoutSolution {
             basket.put(offer.item, basket.get(offer.item) - offer.units);
         }
 
-        if (basket.get(offer.freeItem) - 1 == 0) {
-            basket.remove(offer.freeItem);
-        } else {
-            basket.put(offer.freeItem, basket.get(offer.freeItem) - 1);
+        if (basket.containsKey(offer.freeItem)) {
+            if (basket.get(offer.freeItem) - 1 == 0) {
+                basket.remove(offer.freeItem);
+            } else {
+                basket.put(offer.freeItem, basket.get(offer.freeItem) - 1);
+            }
         }
 
         return offer.price;
@@ -146,4 +148,5 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 

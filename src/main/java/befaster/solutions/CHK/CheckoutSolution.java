@@ -40,11 +40,12 @@ public class CheckoutSolution {
         if (invalidInput(basket)) {
             return -1;
         }
+        System.out.println("Before, Bestresult: " + bestResult);
 
         // Recursively, try all different options to apply offers
         searchOptimalUseOfOffers(basket, 0);
 
-        System.out.println("Bestresult: " + bestResult);
+        System.out.println("After, Bestresult: " + bestResult);
 
         return bestResult;
     }
@@ -128,3 +129,4 @@ public class CheckoutSolution {
         return false;
     }
 }
+

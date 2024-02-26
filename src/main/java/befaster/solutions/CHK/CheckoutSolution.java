@@ -5,7 +5,6 @@ import befaster.supermarket.Offer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -103,7 +102,7 @@ public class CheckoutSolution {
         }
 
         // Recursively, try all different options to apply offers
-        searchOptimalUseOfOffers(basket, 0);
+        searchOptimalUseOfOffers(basket, 0, filteredOffers);
 
         return bestResult;
     }
@@ -122,14 +121,14 @@ public class CheckoutSolution {
      * @param basket       - The current basket that the customer wants to buy
      * @param runningValue - The current amount of the bill with the items that have been bought already
      */
-    private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
+    private void searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue, List<Offer> potentialOffers) {
         int sum = runningValue;
-        Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
+        List<Offer> filteredOffers = potentialOffers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toList());
         for (Offer offer : filteredOffers) {
             sum = runningValue;
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
             sum += applyOffer(updatedBasket, offer);
-            searchOptimalUseOfOffers(updatedBasket, sum);
+            searchOptimalUseOfOffers(updatedBasket, sum, filteredOffers);
         }
 
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
@@ -186,4 +185,5 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 

@@ -19,8 +19,10 @@ public class Offer implements Comparable<Offer> {
         this.freeItem = freeItem;
         this.isolated = isolated;
         this.items = new LinkedHashSet<>();
-        for (Character element : itemsStr.toCharArray()) {
-            items.add(element);
+        if (itemsStr != null) {
+            for (Character element : itemsStr.toCharArray()) {
+                items.add(element);
+            }
         }
     }
 
@@ -39,4 +41,5 @@ public class Offer implements Comparable<Offer> {
         }
     }
 }
+
 

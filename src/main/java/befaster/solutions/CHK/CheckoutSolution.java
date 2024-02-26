@@ -10,10 +10,10 @@ import java.util.Map;
 public class CheckoutSolution {
 
     List<StockKeepingUnit> stock = List.of(
-            new StockKeepingUnit("A", 50),
-            new StockKeepingUnit("B", 30),
-            new StockKeepingUnit("C", 20),
-            new StockKeepingUnit("D", 15)
+            new StockKeepingUnit('A', 50),
+            new StockKeepingUnit('B', 30),
+            new StockKeepingUnit('C', 20),
+            new StockKeepingUnit('D', 15)
     );
 
     List<Offer> offers = List.of(
@@ -23,17 +23,15 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         Map<Character, Integer> basket = new HashMap<>();
-        int bill = 0;
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
 
-        int sum = applyOffers(basket);
+        int bill = applyOffers(basket);
 
-        basket.forEach((key, value) -> {
-            stock.stream().filter(it -> it.item == key).findFirst().get().price;
-        });
-
+        for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
+            bill += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
+        }
 
         return bill;
     }
@@ -59,6 +57,7 @@ public class CheckoutSolution {
         return sum;
     }
 }
+
 
 
 

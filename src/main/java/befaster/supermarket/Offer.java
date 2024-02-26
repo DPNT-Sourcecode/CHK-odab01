@@ -4,13 +4,14 @@ public class Offer {
 
     public Character item;
     public int units;
-    public double price;
+    public int price;
 
-    public Offer(Character item, int units, double price) {
+    public Offer(Character item, int units, int price) {
         this.item = item;
         this.units = units;
         this.price = price;
     }
 
 }
+
 

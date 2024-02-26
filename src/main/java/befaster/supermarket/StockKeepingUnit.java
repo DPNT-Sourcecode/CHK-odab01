@@ -3,9 +3,9 @@ package befaster.supermarket;
 public class StockKeepingUnit {
 
     public String item;
-    public double price;
+    public int price;
 
-    public StockKeepingUnit(String item, double price) {
+    public StockKeepingUnit(String item, int price) {
 
         this.item = item;
         this.price = price;
@@ -13,3 +13,4 @@ public class StockKeepingUnit {
     }
 
 }
+

@@ -142,13 +142,28 @@ public class CheckoutSolution {
      * @return the cost after the offer has been applied
      */
     private int applyOffer(Map<Character, Integer> basket, Offer offer) {
+        int numTimesApplied = 0;
         if (!offer.items.isEmpty()) {
             int numOfAffectedItems = 0;
-            int sumOfElements = 0;
+//            int sumOfElements = 0;
             for (Character element : offer.items) {
                 numOfAffectedItems += basket.getOrDefault(element, 0);
             }
-            for(int i)
+            int numOfElementsToRemove = (numOfAffectedItems / offer.units);
+            for (Character element : offer.items) {
+                if (numOfElementsToRemove > 0) {
+                    int existingCharacters = basket.getOrDefault(element, 0);
+                    if (existingCharacters > 0) {
+                        if (numOfElementsToRemove >= existingCharacters) {
+                            numOfElementsToRemove -= existingCharacters;
+                            basket.remove(element);
+                        } else {
+                            basket.put(element, basket.get(element) - numOfElementsToRemove);
+                            numOfElementsToRemove = 0;
+                        }
+                    }
+                }
+            }
         } else {
 
             int desiredAmount = basket.get(offer.item);
@@ -156,7 +171,7 @@ public class CheckoutSolution {
             if (offer.freeItem == offer.item) {
                 numOfUnitsPerOffer++;
             }
-            int numTimesApplied = desiredAmount / numOfUnitsPerOffer;
+            numTimesApplied = desiredAmount / numOfUnitsPerOffer;
 
             if (basket.get(offer.item) - (numTimesApplied * numOfUnitsPerOffer) <= 0) {
                 basket.remove(offer.item);
@@ -206,4 +221,3 @@ public class CheckoutSolution {
         }
     }
 }
-

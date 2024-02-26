@@ -112,7 +112,7 @@ public class CheckoutSolution {
      * @return whether the input is valid or not. If not, we stop running and return -1
      */
     private boolean invalidInput(Map<Character, Integer> basket) {
-        return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
+        return !stock.keySet().containsAll(basket.keySet());
     }
 
     /**
@@ -132,7 +132,7 @@ public class CheckoutSolution {
         }
 
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
-            sum += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
+            sum += stock.get(entry.getKey()) * entry.getValue();
         }
         if (sum < bestResult) {
             bestResult = sum;
@@ -185,5 +185,6 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 

@@ -23,11 +23,11 @@ public class CheckoutSolution {
             new Offer('E', 2, 80, 'B', 30)
     ));
 
-    int betterResult = Integer.MAX_VALUE;
+    int bestResult = Integer.MAX_VALUE;
 
     public Integer checkout(String skus) {
 
-        Comparator<Offer> comparator = getOfferComparator();
+//        Comparator<Offer> comparator = getOfferComparator();
 
         Map<Character, Integer> basket = new HashMap<>();
         for (char character : skus.toCharArray()) {
@@ -40,26 +40,26 @@ public class CheckoutSolution {
         }
 
         // First, we try to apply as much offers as possible
-        int bill = applyOffers(basket);
+        searchOptimalUseOfOffers(basket);
 
         // Then, we calculate the total bill with the remaining elements in the basket
-        for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
-            bill += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
-        }
+//        for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
+//            bill += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
+//        }
 
-        return bill;
+        return bestResult;
     }
 
-    private Comparator<Offer> getOfferComparator(String skus, Map<Character, Integer> basket) {
-        return (offer1, offer2) -> {
-            int totalPrizeOffer1 = offer1.units * offer1.price + ();
-            int totalPrizeOffer2 = 0;
-
-            double totalDiscountOffer1 = offer1.totalDiscount * (basket.getOrDefault(offer1.item, 0) / offer1.units);
-
-            return Double.compare(offer2.totalDiscount / offer2.units, offer1.totalDiscount / offer1.units);
-        };
-    }
+//    private Comparator<Offer> getOfferComparator(String skus, Map<Character, Integer> basket) {
+//        return (offer1, offer2) -> {
+//            int totalPrizeOffer1 = offer1.units * offer1.price + ();
+//            int totalPrizeOffer2 = 0;
+//
+//            double totalDiscountOffer1 = offer1.totalDiscount * (basket.getOrDefault(offer1.item, 0) / offer1.units);
+//
+//            return Double.compare(offer2.totalDiscount / offer2.units, offer1.totalDiscount / offer1.units);
+//        };
+//    }
 
     /**
      * Check if the input is valid. Otherwise, we stop running and return -1
@@ -71,23 +71,22 @@ public class CheckoutSolution {
         return !stock.stream().map(it -> it.item).collect(Collectors.toSet()).containsAll(basket.keySet());
     }
 
-    private int applyOffers(Map<Character, Integer> basket) {
+    private int searchOptimalUseOfOffers(Map<Character, Integer> basket) {
         int sum = 0;
         Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
         for (Offer offer : filteredOffers) {
-            sum += applyOffer(basket, offer);
-            sum += applyOffers(basket);
-            if(sum < betterResult){
-                betterResult = sum;
+            Map<Character, Integer> updatedBasket = new HashMap<>(basket);
+            sum = applyOffer(updatedBasket, offer);
+            sum += searchOptimalUseOfOffers(updatedBasket);
+            if(sum < bestResult){
+                bestResult = sum;
             }
         }
 
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
             sum += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
         }
-//        if (sum < betterResult) {
-//            betterResult = sum;
-//        }
+
         return sum;
     }
 
@@ -147,5 +146,6 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 

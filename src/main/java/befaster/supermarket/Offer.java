@@ -23,7 +23,7 @@ public class Offer implements Comparable<Offer> {
         } else if (!this.isolated && otherOffer.isolated) {
             return 1;
         } else {
-            int unitComparison = Integer.compare(this.units, otherOffer.units);
+            int unitComparison = Integer.compare(otherOffer.units, this.units);
             if (unitComparison != 0) {
                 return unitComparison;
             }
@@ -31,6 +31,7 @@ public class Offer implements Comparable<Offer> {
         }
     }
 }
+
 
 
 

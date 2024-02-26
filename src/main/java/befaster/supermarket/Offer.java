@@ -1,6 +1,6 @@
 package befaster.supermarket;
 
-public class Offer implements Comparable<Offer>{
+public class Offer implements Comparable<Offer> {
 
     public Character item;
     public int units;
@@ -18,18 +18,20 @@ public class Offer implements Comparable<Offer>{
 
     @Override
     public int compareTo(Offer otherOffer) {
-        if(this.isolated && !otherOffer.isolated){
+        if (this.isolated && !otherOffer.isolated) {
             return -1;
-        } else if(!this.isolated && otherOffer.isolated){
+        } else if (!this.isolated && otherOffer.isolated) {
             return 1;
-        } else{
-            return this.units
+        } else {
+            int unitComparison = Integer.compare(this.units, otherOffer.units);
+            if (unitComparison != 0) {
+                return unitComparison;
+            }
+            return Integer.compare(this.item, otherOffer.item);
         }
-
-        // Order by the discount we get per item. A good indicator of which offer is better.
-        return Double.compare(otherOffer.totalDiscount / otherOffer.units, this.totalDiscount / this.units);
     }
 }
+
 
 
 

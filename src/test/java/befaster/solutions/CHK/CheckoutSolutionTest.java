@@ -36,6 +36,8 @@ public class CheckoutSolutionTest {
     @Test
     public void CHK_R3() {
         assertThat(new CheckoutSolution().checkout("FFF"), equalTo(20));
+        assertThat(new CheckoutSolution().checkout("FFFFFF"), equalTo(40));
+        assertThat(new CheckoutSolution().checkout("FFFFF"), equalTo(40));
     }
 
     @Test
@@ -45,4 +47,5 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
     }
 }
+
 

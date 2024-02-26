@@ -27,10 +27,11 @@ public class CheckoutSolution {
             new Offer('E', 2, 80, 'B')
     );
 
-    int bestResult = Integer.MAX_VALUE;
+    int bestResult;
 
     public Integer checkout(String skus) {
 
+        bestResult = Integer.MAX_VALUE;
         Map<Character, Integer> basket = new HashMap<>();
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
@@ -40,12 +41,9 @@ public class CheckoutSolution {
         if (invalidInput(basket)) {
             return -1;
         }
-        System.out.println("Before, Bestresult: " + bestResult);
 
         // Recursively, try all different options to apply offers
         searchOptimalUseOfOffers(basket, 0);
-
-        System.out.println("After, Bestresult: " + bestResult);
 
         return bestResult;
     }
@@ -68,11 +66,9 @@ public class CheckoutSolution {
      * @return
      */
     private int searchOptimalUseOfOffers(Map<Character, Integer> basket, int runningValue) {
-        System.out.println("RunningValue: " + runningValue);
         int sum = runningValue;
         Set<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toSet());
         for (Offer offer : filteredOffers) {
-            System.out.println("applying offer: " + offer.item);
             sum = runningValue;
             Map<Character, Integer> updatedBasket = new HashMap<>(basket);
             sum += applyOffer(updatedBasket, offer);
@@ -80,12 +76,9 @@ public class CheckoutSolution {
         }
 
         for (Map.Entry<Character, Integer> entry : basket.entrySet()) {
-            System.out.println("Before, Sum is: " + sum);
             sum += (stock.stream().filter(it -> it.item == entry.getKey()).findFirst().get().price * entry.getValue());
-            System.out.println("After, Sum is: " + sum);
         }
         if (sum < bestResult) {
-            System.out.println("Updating best result value with " + sum);
             bestResult = sum;
         }
 
@@ -129,4 +122,5 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 

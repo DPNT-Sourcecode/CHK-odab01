@@ -25,9 +25,7 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
 
-        Comparator<Offer> comparator = (offer1, offer2) -> {
-            
-        };
+        Comparator<Offer> comparator = getOfferComparator();
 
         Map<Character, Integer> basket = new HashMap<>();
         for (char character : skus.toCharArray()) {
@@ -48,6 +46,17 @@ public class CheckoutSolution {
         }
 
         return bill;
+    }
+
+    private Comparator<Offer> getOfferComparator(String skus, Map<Character, Integer> basket) {
+        return (offer1, offer2) -> {
+            int totalPrizeOffer1 = offer1.units * offer1.price + ();
+            int totalPrizeOffer2 = 0;
+
+            double totalDiscountOffer1 = offer1.totalDiscount * (basket.getOrDefault(offer1.item, 0) / offer1.units);
+
+            return Double.compare(offer2.totalDiscount / offer2.units, offer1.totalDiscount / offer1.units);
+        };
     }
 
     /**
@@ -100,3 +109,4 @@ public class CheckoutSolution {
         return false;
     }
 }
+

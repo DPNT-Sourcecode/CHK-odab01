@@ -94,7 +94,7 @@ public class CheckoutSolution {
         for (char character : skus.toCharArray()) {
             basket.put(character, basket.getOrDefault(character, 0) + 1);
         }
-        List<Offer> filteredOffers = offers.stream().filter(it -> basket.containsKey(it.item)).collect(Collectors.toList());
+        List<Offer> filteredOffers = offers.stream().filter(it -> isOfferApplicable(basket, it)).collect(Collectors.toList());
 
         // Checking valid input. If not, exit the program -> -1
         if (invalidInput(basket)) {
@@ -185,5 +185,6 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 

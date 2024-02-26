@@ -27,10 +27,15 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void advancedOfferCases() {
+    public void CHK_R2() {
         assertThat(new CheckoutSolution().checkout("EEB"), equalTo(80));
         assertThat(new CheckoutSolution().checkout("EE"), equalTo(80));
         assertThat(new CheckoutSolution().checkout("BBEE"), equalTo(110));
+    }
+
+    @Test
+    public void CHK_R3() {
+        assertThat(new CheckoutSolution().checkout("FFF"), equalTo(20));
     }
 
     @Test
@@ -40,3 +45,4 @@ public class CheckoutSolutionTest {
         assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
     }
 }
+

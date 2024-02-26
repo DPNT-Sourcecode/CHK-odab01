@@ -113,7 +113,11 @@ public class CheckoutSolution {
     }
 
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
-        if (basket.containsKey(offer.item) && basket.get(offer.item) >= offer.units) {
+        int numberOfItemsRequired = offer.units;
+        if (offer.freeItem == offer.item) {
+            numberOfItemsRequired++;
+        }
+        if (basket.containsKey(offer.item) && basket.get(offer.item) >= numberOfItemsRequired) {
             if (offer.freeItem != null) {
                 // The offer is only worth it in case the free item is already in the basket
                 return basket.containsKey(offer.freeItem);
@@ -124,6 +128,7 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 
 

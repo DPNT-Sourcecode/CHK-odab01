@@ -146,21 +146,23 @@ public class CheckoutSolution {
      * @return the cost after the offer has been applied
      */
     private int applyOffer(Map<Character, Integer> basket, Offer offer) {
-        if (basket.get(offer.item) - offer.units == 0) {
+        int desiredAmount = basket.get(offer.item);
+        int numTimesApplied = desiredAmount / offer.units;
+        if (basket.get(offer.item) - (offer.units * offer.units) == 0) {
             basket.remove(offer.item);
         } else {
-            basket.put(offer.item, basket.get(offer.item) - offer.units);
+            basket.put(offer.item, basket.get(offer.item) - (offer.units * numTimesApplied));
         }
 
         if (basket.containsKey(offer.freeItem)) {
-            if (basket.get(offer.freeItem) - 1 == 0) {
+            if (basket.get(offer.freeItem) - numTimesApplied <= 0) {
                 basket.remove(offer.freeItem);
             } else {
-                basket.put(offer.freeItem, basket.get(offer.freeItem) - 1);
+                basket.put(offer.freeItem, basket.get(offer.freeItem) - numTimesApplied);
             }
         }
 
-        return offer.price;
+        return offer.price * numTimesApplied;
     }
 
     /**
@@ -184,5 +186,6 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 

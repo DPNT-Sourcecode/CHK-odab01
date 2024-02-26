@@ -41,9 +41,17 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void CHK_R4() {
+        assertThat(new CheckoutSolution().checkout("RRRQ"), equalTo(150));
+        assertThat(new CheckoutSolution().checkout("VVVVV"), equalTo(220));
+        assertThat(new CheckoutSolution().checkout("KKJK"), equalTo(290));
+    }
+
+    @Test
     public void edgeCases() {
         assertThat(new CheckoutSolution().checkout(""), equalTo(0));
-        assertThat(new CheckoutSolution().checkout("Z"), equalTo(-1));
-        assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
+        assertThat(new CheckoutSolution().checkout("z"), equalTo(-1));
+        assertThat(new CheckoutSolution().checkout("ABCzDDD"), equalTo(-1));
     }
 }
+

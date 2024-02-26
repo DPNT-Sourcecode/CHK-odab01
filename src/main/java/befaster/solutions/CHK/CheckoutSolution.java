@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class CheckoutSolution {
 
     /**
-     * G    | 20    |                        |
+     * G    |   20    |                        |
      * | H    | 10    | 5H for 45, 10H for 80  |
      * | I    | 35    |                        |
      * | J    | 60    |                        |
@@ -40,16 +40,45 @@ public class CheckoutSolution {
             new StockKeepingUnit('C', 20),
             new StockKeepingUnit('D', 15),
             new StockKeepingUnit('E', 40),
-            new StockKeepingUnit('F', 10)
+            new StockKeepingUnit('F', 10),
+            new StockKeepingUnit('G', 20),
+            new StockKeepingUnit('H', 10),
+            new StockKeepingUnit('I', 35),
+            new StockKeepingUnit('J', 60),
+            new StockKeepingUnit('K', 80),
+            new StockKeepingUnit('L', 90),
+            new StockKeepingUnit('M', 15),
+            new StockKeepingUnit('N', 40),
+            new StockKeepingUnit('O', 10),
+            new StockKeepingUnit('P', 50),
+            new StockKeepingUnit('Q', 30),
+            new StockKeepingUnit('R', 50),
+            new StockKeepingUnit('S', 30),
+            new StockKeepingUnit('T', 20),
+            new StockKeepingUnit('U', 40),
+            new StockKeepingUnit('V', 50),
+            new StockKeepingUnit('W', 20),
+            new StockKeepingUnit('X', 90),
+            new StockKeepingUnit('Y', 10),
+            new StockKeepingUnit('Z', 50)
     );
 
-    // Offers are already sorted using a customised comparator to always favor the customer. Best offers are found first in the TreeSet.
     List<Offer> offers = List.of(
             new Offer('A', 3, 130, null),
             new Offer('A', 5, 200, null),
             new Offer('B', 2, 45, null),
             new Offer('E', 2, 80, 'B'),
-            new Offer('F', 2, 20, 'F')
+            new Offer('F', 2, 20, 'F'),
+            new Offer('H', 5, 45, null),
+            new Offer('H', 10, 80, null),
+            new Offer('K', 2, 150, null),
+            new Offer('N', 3, 120, 'M'),
+            new Offer('P', 5, 200, null),
+            new Offer('Q', 3, 80, null),
+            new Offer('R', 3, 150, 'Q'),
+            new Offer('U', 3, 120, 'U'),
+            new Offer('V', 2, 90, null),
+            new Offer('V', 3, 130, null)
     );
 
     int bestResult;
@@ -151,5 +180,6 @@ public class CheckoutSolution {
         return false;
     }
 }
+
 
 

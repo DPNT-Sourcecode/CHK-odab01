@@ -22,13 +22,30 @@ public class CheckoutSolution {
     );
 
     public Integer checkout(String skus) {
-        Map<String, Integer> basket = new HashMap<>();
-        
+        Map<Character, Integer> basket = new HashMap<>();
+        int bill = 0;
+        for (char character : skus.toCharArray()) {
+            basket.put(character, basket.getOrDefault(character, 0) + 1);
+        }
 
-        System.out.println(skus);
+        while(anyOfferApplicable()){
 
-        return -1;
+        }
+
+
+        return bill;
+    }
+
+    private void anyOfferApplicable(Map<Character, Integer> basket){
+        boolean offerApplied = true;
+        while(offerApplied){
+            offers.stream().forEach(
+                    
+            );
+        }
+
     }
 }
+
 
 

@@ -1,6 +1,5 @@
 package befaster.solutions.CHK;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -28,10 +27,18 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void advancedOfferCases() {
+        assertThat(new CheckoutSolution().checkout("EEB"), equalTo(80));
+        assertThat(new CheckoutSolution().checkout("EE"), equalTo(80));
+        assertThat(new CheckoutSolution().checkout("BBEE"), equalTo(110));
+    }
+
+    @Test
     public void edgeCases() {
         assertThat(new CheckoutSolution().checkout(""), equalTo(0));
         assertThat(new CheckoutSolution().checkout("Z"), equalTo(-1));
         assertThat(new CheckoutSolution().checkout("ABCZDDD"), equalTo(-1));
     }
 }
+
 

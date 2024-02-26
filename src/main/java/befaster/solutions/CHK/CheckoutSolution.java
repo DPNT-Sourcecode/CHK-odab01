@@ -82,6 +82,7 @@ public class CheckoutSolution {
 
     /**
      * Apply the offer passed as input parameter
+     *
      * @param basket
      * @param offer
      * @return
@@ -103,18 +104,19 @@ public class CheckoutSolution {
 
         return offer.price;
     }
-    
+
     private boolean isOfferApplicable(Map<Character, Integer> basket, Offer offer) {
         if (basket.containsKey(offer.item) && basket.get(offer.item) >= offer.units) {
             if (offer.freeItem != null) {
+                // The offer is only worth it in case the free item is already in the basket
                 return basket.containsKey(offer.freeItem);
             } else {
-                // The offer is only worth it in case the free item is already in the basket
                 return true;
             }
         }
         return false;
     }
 }
+
 
 
